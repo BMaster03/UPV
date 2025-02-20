@@ -1,0 +1,10 @@
+# Ignorar todo
+/*
+
+# No ignorar la carpeta CodesPython
+!/CodesPython/
+!/.gitignore
+!/README.md
+!/requirements.txt
+
+
