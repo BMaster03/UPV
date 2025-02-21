@@ -1,10 +1,14 @@
-# Ignorar todo
+# Ignorar todo por defecto
 /*
+
+# Ignorar todas las carpetas __pycache__
+**/__pycache__/
 
 # No ignorar la carpeta CodesPython
 !/CodesPython/
+
+# No ignorar estos archivos y carpetas específicos
 !/.gitignore
 !/README.md
 !/requirements.txt
-
-
+!/main.py
