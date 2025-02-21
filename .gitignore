@@ -7,6 +7,9 @@
 # No ignorar la carpeta CodesPython
 !/CodesPython/
 
+# Ignorar una carpeta específica dentro de CodesPython
+/CodesPython/Neural_Networks/__pycache__/
+
 # No ignorar estos archivos y carpetas específicos
 !/.gitignore
 !/README.md
