@@ -15,7 +15,6 @@ def main():
     model_image = train_image_detection_model()
     print(model_image)
     
-    
-
+   
 if __name__ == "__main__": # el if _name_ == "__main__" ; sirve para 
     main()
