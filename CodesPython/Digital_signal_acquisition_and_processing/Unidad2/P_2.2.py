@@ -1,15 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-t_max = 2
+t_max = 1
 t = np.linspace(0, t_max,1000)
 
 F = 5 
 xt = np.sin(2*np.pi*F*t)
 
-# Muestreo de la señal analógica 
+# Muestreo de la señal analógica (Frecuencias) 
 FN = 2 * F
 fs = 4 * FN
+# fs = 8
 
 n = np.arange(t_max * fs + 1)
 xn = np.sin(2*np.pi*F*n/fs)
@@ -29,11 +30,10 @@ plt.grid()
 plt.title("Suma de senos cardinales desplazdos y escalados")
 
 # Reconstrucción de la señal por medio de funciones seno cardinal
-xr = np.zeros_like(t) # crea un vector de puros ceros, y poder guardar los calores de amplitud
+xr = np.zeros_like(t) # crea un vector de puros ceros
 for i in n:
     xsi = xn[i] * np.sinc(fs * (t - (i/fs))) # Funciones sinc, desplazadas y escaladas
     xr = xr + xsi # Acumulamos las funciones sinc
-    # print(xsi)
     plt.subplot(3,1,2)
     plt.plot(t, xsi)
 

@@ -16,7 +16,7 @@ def main():
     print(model_image)
     
    
-if __name__ == "__main__": # el if _name_ == "__main__" ; sirve para 
+if __name__ == "__main__": # el if _name_ == "__main__" ; sirve para mandar a ejecutar el código
     main()
 
 

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import make_gaussian_quantiles
 
 def train_neural_network():
-    # Creemos datasets desde cero - Para un ejemplo de clasificacion
+    # We create datasets from scratch - For an example of classification, data training
     N = 1000
     gaussian_quantiles = make_gaussian_quantiles(
         mean=None,
@@ -22,7 +22,7 @@ def train_neural_network():
 
     plt.scatter(X[:,0], X[:,1],c=Y, s=40, cmap=plt.cm.Spectral)
 
-    # Funciones de activacion
+    # Activation functions
 
     def sigmoid(x, derivate=False):
         if derivate:
@@ -38,14 +38,15 @@ def train_neural_network():
         else:
             return np.maximum(0,x)
 
-    # Funcion de perdida
+    # Loss function
+
     def mse(y, y_hat, derivate=False):
         if derivate:
             return (y_hat-y)
         else:
             return np.mean((y_hat-y)**2)
 
-    # Estructura de la red: asignar pesos y biases
+    # Network structure: assignment of weights and bias
 
     def initialize_parameters_deep(layers_dims):
         parameters = {}
@@ -62,15 +63,15 @@ def train_neural_network():
 
         params['A0']=x_data
 
-        # Primer capa
+        # First layer
         params['Z1']=np.matmul(params['A0'], params['W1'])+params['b1']
         params['A1']=relu(params['Z1'])
 
-        # Segunda capa
+        # Second layer
         params['Z2']=np.matmul(params['A1'], params['W2'])+params['b2']
         params['A2']=relu(params['Z2'])
 
-        # Tercer capa
+        # Third layer
         params['Z3']=np.matmul(params['A2'], params['W3'])+params['b3']
         params['A3']=sigmoid(params['Z3'])
 
@@ -78,19 +79,19 @@ def train_neural_network():
 
         if training:
             # Backpropagation
-            # Pesos en la última capa
+            # Weights in the last layer
             params['dZ3'] = mse(Y,output,True)*sigmoid(params['A3'],True)
             params['dW3']=np.matmul(params['A2'].T, params['dZ3'])
 
-            # Pesos en la penúltima capa
+            # Weights in the penultimate layer
             params['dZ2']=np.matmul(params['dZ3'], params['W3'].T)*relu(params['A2'],True)
             params['dW2']=np.matmul(params['A1'].T, params['dZ2'])
 
-            # Pesos de la primer capa
+            # Weights of the first layer
             params['dZ1']=np.matmul(params['dZ2'], params['W2'].T)*relu(params['A1'], True)
             params['dW1']=np.matmul(params['A0'].T, params['dZ1'])
 
-            ## Algoritmo del gradiente descendiente
+            # Gradient Descent Algorithm
             params['W3']=params['W3']-params['dW3']*learning_rate
             params['W2']=params['W2']-params['dW2']*learning_rate
             params['W1']=params['W1']-params['dW1']*learning_rate
@@ -104,12 +105,25 @@ def train_neural_network():
 
     layers_dims = [2, 6, 10, 1]
     params = initialize_parameters_deep(layers_dims)
-    error = []
+    errors = []
+
+    # Epochs for the neural network
 
     for _ in range(50000):
         output = train(X, 0.001, params)
         if _%50==0:
             print(mse(Y,output))
-            error.append(mse(Y,output))
+            errors.append(mse(Y,output))
+    
+    plt.plot(errors)
 
+    data_test_x = (np.random.rand(1000,2) * 2) - 1 # this is data test 
+    data_test_y = train(data_test_x, 0.0001, params, training = False) # arquitecture of red list train 
+
+    y = np.where(data_test_y > 0.5, 1, 0 )
+
+    plt.scatter(data_test_x[:,0], data_test_x[:,1],c=y, s=40, cmap=plt.cm.Spectral)
+
+    plt.show()
+    
 
