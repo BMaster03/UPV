@@ -14,7 +14,7 @@ def resp_frec(h, N):
     angH = np.angle(Hm)
     magH = magH[0:N//2]
     angH = angH[0:N//2]
-    dB = 20 * np.log10((magH+1e-15)/np.max(max))
+    dB = 20 * np.log10((magH+1e-15)/(np.max(magH)))
     m = np.arange(N/2)
     w = m * np.pi/((N/2)-1)
 
