@@ -2,17 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from funciones_filtrado import fpb_ideal, resp_frec
 
-# Frecuencia de paso
-wp = 0.2 * np.pi
-
-# Frecuencia de rechazo
-ws = 0.3 * np.pi
-
-# Atenuación mínima en la banda de rechazo
-As = 50
-
-# Banda de transición 
-delta_w = ws - wp
+wp = 0.2 * np.pi # Frecuencia de paso
+ws = 0.3 * np.pi # Frecuencia de rechazo
+As = 50 # Atenuación mínima en la banda de rechazo
+delta_w = ws - wp # Banda de transición 
 
 # Orden de filtro (numero de taps)
 

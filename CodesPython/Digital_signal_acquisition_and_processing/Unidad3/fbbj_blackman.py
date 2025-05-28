@@ -13,10 +13,8 @@ delta_w = np.min((wp1 - ws1, ws2 -wp2)) # es para obtener el mínimo entre esas 
 
 M = np.ceil(11 * np.pi / delta_w) + 1
 n = np.arange(M) # índices del filtro 
-
 wc1 = (ws1 + wp1)/2
 wc2 = (wp2 + ws2)/2
-
 h = fpb_ideal(wc2, M) - fpb_ideal(wc1, M)
 w = np.blackman(M)
 hw = w * h
@@ -28,7 +26,7 @@ plt.figure()
 plt.subplot(2,2,1)
 plt.stem(n,h)
 plt.grid()
-plt.title("Respuesta al impulso del Fb ideal")
+plt.title("Respuesta al impulso del Filtro")
 plt.xlabel('n')
 plt.ylabel('h(n)')
 plt.axis([0, M-1, -0.4, 0.5])

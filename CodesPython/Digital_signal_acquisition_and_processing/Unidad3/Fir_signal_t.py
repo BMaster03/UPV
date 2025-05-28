@@ -31,7 +31,7 @@ Fs2 = 165
 
 # frecuencia angular discreta
 
-ws1 = 2*np.pi*Fs1/fs
+ws1 = 2*np.pi*Fs1/fs # 2PI*F/fs => multiplicar dos veces Pi por la Frecuencia en tiempo continuo y todo esto sobre la frecuencia de muestreo
 wp1 = 2*np.pi*Fp1/fs
 wp2 = 2*np.pi*Fp2/fs
 ws2 = 2*np.pi*Fs2/fs
